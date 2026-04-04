@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BDHS Bell Schedules</title>
+  <link rel="icon" href="images/rewordifyicon.gif" type="image/gif">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="header">
+    <div id="currentdate"></div>
+    <div id="currenttime"></div>
+  </div>
+
+  <!-- Lunch Selector -->
+  <div id="lunchSelector">
+    <div id="dayDisplay">It's <span id="currentDayOfWeek"></span></div>
+    <h2>Select your lunch</h2>
+    <div id="lunchButtons">
+      <button id="lunchA">A Lunch</button>
+      <button id="lunchB">B Lunch</button>
+      <button id="lunchC">C Lunch</button>
+    </div>
+    <div id="dateOverrideNotice">Schedule variation is in effect!</div>
+    <div id="autoScheduleDisplay">
+      Auto-selected schedule: <span id="autoScheduleName"></span>
+      <a href="#" id="manualScheduleLink">Manually select a schedule...</a>
+    </div>
+    <div id="manualScheduleSelector">
+      <div>Select a specific schedule:</div>
+      <div id="scheduleButtons"></div>
+      <button id="cancelManualSelect">Cancel</button>
+    </div>
+  </div>
+
+  <div id="mainContent">
+    <div id="scheduleInfo">
+      <span id="scheduleDisplayName"></span>
+      <a href="#" id="switchLunchLink">Switch schedule...</a>
+    </div>
+    <div id="container">
+      <div id="currenttimeintro"></div>
+      <div id="currentdt"></div>
+      <div id="wearenowintro"></div>
+      <div id="wearenowlabel"></div>
+      <div id="wearenowtimerange"></div>
+      <div id="wearenow"></div>
+      <div id="countdowntointro"></div>
+      <div id="countdowntolabel"></div>
+      <div id="countdown"></div>
+    </div>
+    <div id="containersched">
+      <div id="schedule"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
