@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html class="en-us" lang="en" >
 <head>
@@ -1492,27 +1493,60 @@ function makeDraggable(el, handle){
 
 /* ================= NOTES ================= */
 function createNote(){
+  spawnNote("", 200, 200);
+  saveNotes();
+}
+
+function spawnNote(text, x, y){
   const note=document.createElement("div");
   note.className="ui-note";
-  note.style.left="200px";
-  note.style.top="200px";
+  note.style.left=x+"px";
+  note.style.top=y+"px";
 
   note.innerHTML=`
     <div class="ui-note-header">
-      <button>X</button>
+      <button class="delete">X</button>
     </div>
-    <textarea placeholder="type..."></textarea>
+    <textarea>${text}</textarea>
   `;
 
   notesContainer.appendChild(note);
 
-  const header = note.querySelector(".ui-note-header");
-  const del = note.querySelector("button");
+  const textarea = note.querySelector("textarea");
+  const del = note.querySelector(".delete");
 
-  del.addEventListener("click", ()=>note.remove());
+  textarea.addEventListener("input", saveNotes);
 
-  makeDraggable(note, header);
+  del.addEventListener("click", ()=>{
+    note.remove();
+    saveNotes();
+
+  });
+
+  makeDraggable(note, note.querySelector(".ui-note-header"));
 }
+
+function saveNotes(){
+  const all=[];
+
+  document.querySelectorAll(".ui-note").forEach(note=>{
+    all.push({
+      text: note.querySelector("textarea").value,
+      x: parseInt(note.style.left),
+      y: parseInt(note.style.top)
+    });
+  });
+
+  localStorage.setItem("notes", JSON.stringify(all));
+}
+
+window.addEventListener("load", ()=>{
+  const saved = JSON.parse(localStorage.getItem("notes") || "[]");
+
+  saved.forEach(n=>{
+    spawnNote(n.text, n.x, n.y);
+  });
+});
 
 /* ================= LUNCH MENU ================= */
 const menu={
